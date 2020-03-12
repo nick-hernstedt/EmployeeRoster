@@ -10,8 +10,64 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
 ​
-​
+const OUTPUT_DIR = path.resolve(__dirname, 'output')
+const outputPath = path.join(OUTPUT_DIR, 'team.html')
+
+const render = require("./lib/htmlRenderer.js")
+
+const empolyees = []
+
 // Write code to use inquirer to gather information about the development team members,
+function addEmployee() {
+    inquirer
+        .prompt({
+            type: 'list',
+            message: 'ready to make your team?',
+            choices: ['yes', 'no'],
+            name: 'initialize'
+        }).then((answer) => {
+
+            if (JSON.stringify(answer) == `{"initialize":"yes"}`) {
+                inquirer
+                    .prompt({
+                        type: 'list',
+                        message: 'What kind of employee are you adding?',
+                        choices: ['Manager', 'Engineer', 'Intern'],
+                        name: 'employeeType'
+                    }).then((employeeType) => {
+                        switch (JSON.stringify(employeeType)) {
+                            case `{"employeeType":"Manager}`:
+                                Manager()
+                                break
+                            case `{"employeeType":"Intern}`:
+                                Intern()
+                                break    
+                            case `{"employeeType":"Engineer}`:
+                                Engineer()
+                                break         
+                            default:
+                                break                           
+                        }
+                    })
+            } else { console.log('I understand, have a nice day.')}
+        })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+​
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 ​
 // After the user has input all employees desired, call the `render` function (required

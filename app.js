@@ -54,7 +54,7 @@ function addEmployee() {
 }
 
 function manager() {
-    console.log('Input your Managers information')
+    console.log('Enter your Managers information')
     inquirer 
         .prompt ([
             {
@@ -85,7 +85,7 @@ function manager() {
 }
 
 function intern() {
-    console.log("Input your intern's information")
+    console.log("Enter your intern's information")
     inquirer    
         .prompt([
             {
@@ -117,7 +117,37 @@ function intern() {
         })
 }
 
+function engineer() {
+    console.log("Enter your engineer's information.")
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What is your Engineer's name",
+                name: "engineerName"
+            },
+            {
+                type: "input",
+                message: "What is your Engineer's ID number?",
+                name: "engineerId"
+            },
+            {
+                type: "input",
+                message: "What is your Engineer's email?",
+                name: "engineerEmail"
+            },
+            {
+                type: "input",
+                message: "What is your Engineer's Github Username?",
+                name: "engineerGithub"
+            }
+        ]).then((answers) => {
+            const currentEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub, `Engineer`)
 
+            employees.push(currentEngineer)
+            anotherEmployee()
+        })
+}
 addEmployee();
 
 

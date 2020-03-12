@@ -109,7 +109,7 @@ function intern() {
                 name: "internSchool"
             }
         ]).then((answers) => {
-            const currentIntern = newIntern(answers.internName, answers.internId, answers.internEmail, answers.internSchool, 'Intern')
+            const currentIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool, 'Intern')
 
             employees.push(currentIntern)
 

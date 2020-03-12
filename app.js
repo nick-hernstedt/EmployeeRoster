@@ -59,22 +59,22 @@ function manager() {
         .prompt ([
             {
                 type: 'input',
-                message: "What is the name of this manager?",
+                message: "Enter your manager's name.",
                 name: 'managerName'
             },
             {
                 type: 'input',
-                message: "Enter manager's ID number.",
+                message: "Enter your manager's ID number.",
                 name: managerId
             },
             {
                 type: 'input',
-                message: "Enter manager's email",
+                message: "Enter your manager's email address.",
                 name: "managerEmail"
             },
             {
                 type: 'input',
-                message: "What is this manager's office number?",
+                message: "Enter your managers office number",
                 name: 'managerNumber'
             }
         ]).then((answers) => {
@@ -84,6 +84,38 @@ function manager() {
         })
 }
 
+function intern() {
+    console.log("Input your intern's information")
+    inquirer    
+        .prompt([
+            {
+                type: "input",
+                message: "Enter your intern's name",
+                name: "internName"
+            },
+            {
+                type: "input",
+                message: "Enter your intern's ID number.",
+                name: "internId"
+            },
+            {
+                type: "input",
+                message: "Enter your intern's email address.",
+                name: "internEmail"
+            },
+            {
+                type: "input",
+                message: "Enter your intern's school.",
+                name: "internSchool"
+            }
+        ]).then((answers) => {
+            const currentIntern = newIntern(answers.internName, answers.internId, answers.internEmail, answers.internSchool, 'Intern')
+
+            employees.push(currentIntern)
+
+            anotherEmployee();
+        })
+}
 
 
 addEmployee();

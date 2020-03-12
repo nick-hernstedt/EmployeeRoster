@@ -15,7 +15,7 @@ const outputPath = path.join(OUTPUT_DIR, 'team.html')
 
 const render = require("./lib/htmlRenderer.js")
 
-const empolyees = []
+const employees = []
 
 // Write code to use inquirer to gather information about the development team members,
 function addEmployee() {
@@ -37,13 +37,13 @@ function addEmployee() {
                     }).then((employeeType) => {
                         switch (JSON.stringify(employeeType)) {
                             case `{"employeeType":"Manager}`:
-                                Manager()
+                                manager()
                                 break
                             case `{"employeeType":"Intern}`:
-                                Intern()
+                                intern()
                                 break    
                             case `{"employeeType":"Engineer}`:
-                                Engineer()
+                                engineer()
                                 break         
                             default:
                                 break                           
@@ -53,8 +53,40 @@ function addEmployee() {
         })
 }
 
+function manager() {
+    console.log('Input your Managers information')
+    inquirer 
+        .prompt ([
+            {
+                type: 'input',
+                message: "What is the name of this manager?",
+                name: 'managerName'
+            },
+            {
+                type: 'input',
+                message: "Enter manager's ID number.",
+                name: managerId
+            },
+            {
+                type: 'input',
+                message: "Enter manager's email",
+                name: "managerEmail"
+            },
+            {
+                type: 'input',
+                message: "What is this manager's office number?",
+                name: 'managerNumber'
+            }
+        ]).then((answers) => {
+            const currentManager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerNumber, 'Manager')
+            employees.push(currentManager)
+            anotherEmployee()
+        })
+}
 
 
+
+addEmployee();
 
 
 
